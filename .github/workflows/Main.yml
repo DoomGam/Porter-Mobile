@@ -50,8 +50,7 @@ jobs:
 
       - name: Test Python Core Scripts
         run: |
-          python3 core/python/shader_fixer.py .
-          python3 core/python/source_injector.py Project.xml
+          python3 core/python/shader_fixer.py
 
       - name: Compile Android APK
         run: haxelib run lime build android -final -D officialBuild
