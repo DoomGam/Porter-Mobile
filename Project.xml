@@ -21,12 +21,10 @@
 
 	<config :android permission="android.permission.READ_EXTERNAL_STORAGE" />
 	<config :android permission="android.permission.WRITE_EXTERNAL_STORAGE" />
-	<config :android permission="android.permission.MANAGE_EXTERNAL_STORAGE" />
 	<config :android permission="android.permission.INTERNET" />
-	
-	<architecture name="arm64" />
-	<architecture name="armv7" />
+
+	<architecture name="arm64" if="android" />
+	<architecture name="armv7" if="android" />
 
 	<haxeflag name="-dce full" />
-	<haxedef name="no-deprecation-warnings" />
 </project>
