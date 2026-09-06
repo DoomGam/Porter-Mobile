@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+	<meta title="Porter-Mobile" package="com.doomgam.portermobile" version="1.0.0" company="DoomGam" />
+	
+	<app main="Main" file="PorterMobile" path="export" />
+	
+	<window width="1280" height="720" fps="60" background="#121212" hardware="true" vsync="true" />
+	<window orientation="landscape" resizable="true" fullscreen="false" />
+
+	<source path="source" />
+	
+	<assets path="assets/images" rename="images" embed="true" />
+	<assets path="assets/sounds" rename="sounds" embed="true" />
+	<assets path="assets/fonts" type="font" rename="fonts" embed="true" />
+
+	<haxelib name="openfl" />
+	<haxelib name="flixel" />
+	<haxelib name="flixel-ui" />
+
+	<haxelib name="hscript" />
+
+	<section if="android">
+		<haxelib name="extension-androidtools" />
+		
+		<config :android permission="android.permission.READ_EXTERNAL_STORAGE" />
+		<config :android permission="android.permission.WRITE_EXTERNAL_STORAGE" />
+		<config :android permission="android.permission.MANAGE_EXTERNAL_STORAGE" />
+		<config :android permission="android.permission.INTERNET" />
+		
+		<architecture name="arm64" />
+		<architecture name="armv7" />
+	</section>
+
+	<section if="ios">
+		<config :ios team-id="" />
+	</section>
+
+	<haxeflag name="-dce full" />
+	<haxedef name="no-deprecation-warnings" />
+</project>
