@@ -17,6 +17,7 @@
 	<haxelib name="flixel" />
 	<haxelib name="flixel-ui" />
 	<haxelib name="hscript" />
+	<haxelib name="extension-androidtools" if="android" />
 
 	<config :android permission="android.permission.READ_EXTERNAL_STORAGE" />
 	<config :android permission="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -25,7 +26,7 @@
 	
 	<architecture name="arm64" />
 	<architecture name="armv7" />
-	
+
 	<haxeflag name="-dce full" />
 	<haxedef name="no-deprecation-warnings" />
 </project>
