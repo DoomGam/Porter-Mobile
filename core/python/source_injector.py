@@ -1,36 +1,32 @@
 import os
 import sys
-import xml.etree.ElementTree as ET
 
 def inject_mobile_support(project_xml_path):
     """
-    Injeta bibliotecas e tags de compilação mobile no Project.xml do mod.
+    Verifica e injeta dependencias nativas mobile no Project.xml com seguranca.
     """
     if not os.path.exists(project_xml_path):
         print(f"[SourceInjector-Error] Project.xml nao encontrado em: {project_xml_path}")
         return False
 
     try:
-        tree = ET.parse(project_xml_path)
-        root = tree.getroot()
+        with open(project_xml_path, 'r', encoding='utf-8') as f:
+            content = f.read()
 
-        has_android_tools = False
-        for haxelib in root.findall('haxelib'):
-            if haxelib.get('name') == 'extension-androidtools':
-                has_android_tools = True
-                break
+        if '<haxelib name="extension-androidtools"' not in content:
+            replacement = '	<haxelib name="extension-androidtools" if="android" />\n</project>'
+            content = content.replace('</project>', replacement)
 
-        if not has_android_tools:
-            android_lib = ET.Element('haxelib', {'name': 'extension-androidtools', 'if': 'android'})
-            root.append(android_lib)
-            print("[SourceInjector] Injetada haxelib 'extension-androidtools'")
+            with open(project_xml_path, 'w', encoding='utf-8') as f:
+                f.write(content)
+            print("[SourceInjector] Injetada a biblioteca extension-androidtools no Project.xml!")
+        else:
+            print("[SourceInjector] extension-androidtools ja esta presente no Project.xml.")
 
-        tree.write(project_xml_path, encoding='utf-8', xml_declaration=True)
-        print("[SourceInjector] Project.xml atualizado com sucesso!")
         return True
 
     except Exception as e:
-        print(f"[SourceInjector-Error] Erro ao injetar configuracoes no Project.xml: {e}")
+        print(f"[SourceInjector-Error] Erro ao injetar configuracoes: {e}")
         return False
 
 if __name__ == "__main__":
