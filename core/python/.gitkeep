@@ -1,0 +1,8 @@
+mkdir -p .github/workflows
+mkdir -p assets/images assets/sounds assets/fonts
+mkdir -p core/python core/scripts
+mkdir -p source/states source/ui source/utils
+
+touch assets/images/.gitkeep assets/sounds/.gitkeep assets/fonts/.gitkeep
+touch core/python/.gitkeep core/scripts/.gitkeep
+touch source/states/.gitkeep source/ui/.gitkeep source/utils/.gitkeep
